@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  JBoss, Home of Professional Open Source
+  Copyright 2010, Red Hat Middleware LLC, and individual contributors
+  by the @authors tag. See the copyright.txt in the distribution for a
+  full listing of individual contributors.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+--> 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>org.jboss.seam</groupId>
+      <artifactId>seam-parent</artifactId>
+      <version>9</version>
+   </parent>
+
+   <artifactId>seam-compatibility</artifactId>
+   <packaging>jar</packaging>
+
+   <name>Seam Compatibility Module</name>
+   <!-- url required for JAR Manifest -->
+   <url>http://www.seamframework.org/Seam3/Compatibility</url>
+   
+   <properties>
+      <seam.version>3.0.0.CR9</seam.version>
+   </properties>   
+   
+   <dependencyManagement>
+     <dependencies>
+        <dependency>
+          <groupId>org.jboss.seam</groupId>
+          <artifactId>seam-bom</artifactId>
+          <version>${seam.version}</version>
+          <scope>import</scope>
+          <type>pom</type>
+       </dependency>   
+     </dependencies>
+   </dependencyManagement>
+
+   <dependencies>
+
+      <dependency>
+         <groupId>javax.enterprise</groupId>
+         <artifactId>cdi-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.spec.javax.el</groupId>
+         <artifactId>jboss-el-api_2.2_spec</artifactId>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.logmanager</groupId>
+         <artifactId>jboss-logmanager</artifactId>
+         <scope>provided</scope>
+         <optional>true</optional>
+      </dependency>
+
+      <dependency>
+         <groupId>log4j</groupId>
+         <artifactId>log4j</artifactId>
+         <version>1.2.16</version>
+         <scope>provided</scope>
+         <optional>true</optional>
+      </dependency>
+
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-api</artifactId>
+         <version>1.5.8</version>
+         <scope>provided</scope>
+         <optional>true</optional>
+      </dependency>
+
+      <!-- EL impl needed for ElTest -->
+      <dependency>
+         <groupId>org.glassfish.web</groupId>
+         <artifactId>el-impl</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.spec.javax.ejb</groupId>
+         <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit-dep</artifactId>
+         <!-- FIXME move version/scope to seam-parent -->
+         <version>4.8.1</version>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.arquillian</groupId>
+         <artifactId>arquillian-junit</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.slf4j</groupId>
+         <artifactId>slf4j-simple</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <plugins>
+         <!-- Perform all tests in integration-test phase -->
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <skip>true</skip>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>surefire-it</id>
+                  <phase>integration-test</phase>
+                  <goals>
+                     <goal>test</goal>
+                  </goals>
+                  <configuration>
+                     <skip>false</skip>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+
+   <profiles>
+      <profile>
+         <id>default</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+            <property>
+               <name>default</name>
+            </property>
+         </activation>
+         <dependencies>
+            <dependency>
+               <groupId>org.jboss.weld.arquillian.container</groupId>
+               <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.spec.javax.transaction</groupId>
+               <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>org.hibernate.javax.persistence</groupId>
+               <artifactId>hibernate-jpa-2.0-api</artifactId>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>javax.validation</groupId>
+               <artifactId>validation-api</artifactId>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.weld</groupId>
+               <artifactId>weld-core</artifactId>
+               <scope>test</scope>
+            </dependency>
+         </dependencies>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+      <profile>
+         <id>incontainer</id>
+         <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+               <name>incontainer</name>
+            </property>
+         </activation>
+         <dependencies>
+            <dependency>
+               <groupId>org.jboss.arquillian.container</groupId>
+               <artifactId>arquillian-jbossas-managed-6</artifactId>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.jbossas</groupId>
+               <artifactId>jboss-server-manager</artifactId>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.jbossas</groupId>
+               <artifactId>jboss-as-client</artifactId>
+               <type>pom</type>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.weld</groupId>
+               <artifactId>weld-core</artifactId>
+               <scope>test</scope>
+            </dependency>
+         </dependencies>
+      </profile>
+      <profile>
+         <id>incontainer-remote</id>
+         <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+               <name>incontainer-remote</name>
+            </property>
+         </activation>
+         <dependencies>
+            <dependency>
+               <groupId>org.jboss.arquillian.container</groupId>
+               <artifactId>arquillian-jbossas-remote-6</artifactId>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.jbossas</groupId>
+               <artifactId>jboss-as-client</artifactId>
+               <type>pom</type>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.weld</groupId>
+               <artifactId>weld-core</artifactId>
+               <scope>test</scope>
+            </dependency>
+         </dependencies>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <parallel>none</parallel>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+      <profile>
+         <id>incontainer-glassfish-jsr88</id>
+         <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+               <name>incontainer-glassfish-jsr88</name>
+            </property>
+         </activation>
+         <dependencies>
+            <dependency>
+               <groupId>org.jboss.arquillian.container</groupId>
+               <artifactId>arquillian-glassfish-remote-3</artifactId>
+            </dependency>
+            <dependency>
+               <groupId>org.glassfish.deployment</groupId>
+               <artifactId>deployment-client</artifactId>
+            </dependency>
+         </dependencies>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <parallel>none</parallel>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+      <profile>
+         <id>incontainer-glassfish-rest</id>
+         <activation>
+            <activeByDefault>false</activeByDefault>
+            <property>
+               <name>incontainer-glassfish-rest</name>
+            </property>
+         </activation>
+         <dependencies>
+            <!-- ARQ-323 -->
+            <dependency>
+               <groupId>org.jboss.arquillian.container</groupId>
+               <artifactId>arquillian-glassfish-remote-3.1</artifactId>
+               <version>1.0.0.Alpha5</version>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>org.jboss.spec</groupId>
+               <artifactId>jboss-javaee-6.0</artifactId>
+               <type>pom</type>
+               <scope>provided</scope>
+            </dependency>
+            <!-- FIXME move jersey version to parent -->
+            <dependency>
+               <groupId>com.sun.jersey</groupId>
+               <artifactId>jersey-bundle</artifactId>
+               <version>1.5</version>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+               <groupId>com.sun.jersey.contribs</groupId>
+               <artifactId>jersey-multipart</artifactId>
+               <version>1.5</version>
+               <scope>test</scope>
+            </dependency>
+         </dependencies>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <parallel>none</parallel>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
+
+</project>
