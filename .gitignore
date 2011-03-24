@@ -1,0 +1,12 @@
+.project
+.settings
+.classpath
+*.iml
+*.ipr
+*.iws
+target
+test-output
+MANIFEST.MF
+transaction.log
+.idea
+*~
