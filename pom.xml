@@ -109,6 +109,7 @@
       <dependency>
          <groupId>org.jboss.arquillian</groupId>
          <artifactId>arquillian-junit</artifactId>
+         <version>1.0.0.Alpha5</version>
       </dependency>
 
       <dependency>
@@ -185,60 +186,19 @@
          </pluginRepositories>
       </profile>
       <profile>
-         <id>default</id>
+         <id>itest-jbossas-managed</id>
          <activation>
             <activeByDefault>true</activeByDefault>
             <property>
-               <name>default</name>
-            </property>
-         </activation>
-         <dependencies>
-            <dependency>
-               <groupId>org.jboss.weld.arquillian.container</groupId>
-               <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
-            </dependency>
-            <dependency>
-               <groupId>org.jboss.spec.javax.transaction</groupId>
-               <artifactId>jboss-transaction-api_1.1_spec</artifactId>
-               <scope>test</scope>
-            </dependency>
-            <dependency>
-               <groupId>org.hibernate.javax.persistence</groupId>
-               <artifactId>hibernate-jpa-2.0-api</artifactId>
-               <scope>test</scope>
-            </dependency>
-            <dependency>
-               <groupId>javax.validation</groupId>
-               <artifactId>validation-api</artifactId>
-               <scope>test</scope>
-            </dependency>
-            <dependency>
-               <groupId>org.jboss.weld</groupId>
-               <artifactId>weld-core</artifactId>
-               <scope>test</scope>
-            </dependency>
-         </dependencies>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-surefire-plugin</artifactId>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
-      <profile>
-         <id>incontainer</id>
-         <activation>
-            <activeByDefault>false</activeByDefault>
-            <property>
-               <name>incontainer</name>
+               <name>itest-container</name>
+               <value>jbossas-managed</value>
             </property>
          </activation>
          <dependencies>
             <dependency>
                <groupId>org.jboss.arquillian.container</groupId>
                <artifactId>arquillian-jbossas-managed-6</artifactId>
+               <version>1.0.0.Alpha5</version>
             </dependency>
             <dependency>
                <groupId>org.jboss.jbossas</groupId>
@@ -257,17 +217,18 @@
          </dependencies>
       </profile>
       <profile>
-         <id>incontainer-remote</id>
+         <id>itest-jbossas-remote</id>
          <activation>
-            <activeByDefault>false</activeByDefault>
             <property>
-               <name>incontainer-remote</name>
+               <name>itest-container</name>
+               <value>jbossas-remote</value>
             </property>
          </activation>
          <dependencies>
             <dependency>
                <groupId>org.jboss.arquillian.container</groupId>
                <artifactId>arquillian-jbossas-remote-6</artifactId>
+               <version>1.0.0.Alpha5</version>
             </dependency>
             <dependency>
                <groupId>org.jboss.jbossas</groupId>
@@ -293,41 +254,11 @@
          </build>
       </profile>
       <profile>
-         <id>incontainer-glassfish-jsr88</id>
+         <id>itest-glassfish-remote</id>
          <activation>
-            <activeByDefault>false</activeByDefault>
             <property>
-               <name>incontainer-glassfish-jsr88</name>
-            </property>
-         </activation>
-         <dependencies>
-            <dependency>
-               <groupId>org.jboss.arquillian.container</groupId>
-               <artifactId>arquillian-glassfish-remote-3</artifactId>
-            </dependency>
-            <dependency>
-               <groupId>org.glassfish.deployment</groupId>
-               <artifactId>deployment-client</artifactId>
-            </dependency>
-         </dependencies>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-surefire-plugin</artifactId>
-                  <configuration>
-                     <parallel>none</parallel>
-                  </configuration>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
-      <profile>
-         <id>incontainer-glassfish-rest</id>
-         <activation>
-            <activeByDefault>false</activeByDefault>
-            <property>
-               <name>incontainer-glassfish-rest</name>
+               <name>itest-container</name>
+               <value>glassfish-remote</value>
             </property>
          </activation>
          <dependencies>

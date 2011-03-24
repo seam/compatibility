@@ -22,12 +22,12 @@ public class EnableInterceptorTest {
     public static WebArchive createDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class)
             .addClasses(Bit.class, FlipBit.class, FlipBitInterceptor.class)
-            .addManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         
         return ShrinkWrap.create(WebArchive.class, "test.war")
             .addClasses(Bean.class)
-            .addLibrary(jar)
-            .addWebResource(EnableInterceptorTest.class.getPackage(), "EnableInterceptorTest-beans.xml", "beans.xml");
+            .addAsLibrary(jar)
+            .addAsWebInfResource(EnableInterceptorTest.class.getPackage(), "EnableInterceptorTest-beans.xml", "beans.xml");
     }
     
     @Test
