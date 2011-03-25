@@ -21,12 +21,6 @@
 
    <engine>
       <maxDeploymentsBeforeRestart>20</maxDeploymentsBeforeRestart>
-      <!-- Uncomment to have test archives exported to the file system for inspection -->
-      
-      <!--
-      <deploymentExportPath>target/</deploymentExportPath>
-      -->
-      
    </engine>
    
    <jboss:container>
