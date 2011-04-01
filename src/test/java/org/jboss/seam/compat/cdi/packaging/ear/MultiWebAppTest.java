@@ -21,6 +21,6 @@ public class MultiWebAppTest  extends SingleWebAppTest{
         return ShrinkWrap.create(EnterpriseArchive.class, "test.ear")
                 .setApplicationXML("org/jboss/seam/compat/cdi/packaging/ear/multi-application.xml")
                 .addAsModule(createWar("foo.war", createJar("foo.jar", FooExtension.class, FooBean.class)))
-                .addAsModule(createWar("bar.war", createJar("boo.jar", BarExtension.class, BarBean.class)));
+                .addAsModule(createWar("bar.war", createJar("bar.jar", BarExtension.class, BarBean.class)));
     }
 }
