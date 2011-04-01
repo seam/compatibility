@@ -23,24 +23,24 @@ import org.junit.runner.RunWith;
  * 
  */
 @RunWith(Arquillian.class)
-public class EarPackagingTest {
+public class SingleWebAppTest {
 
     @Deployment(testable = false)
     public static EnterpriseArchive createEar() {
         return ShrinkWrap.create(EnterpriseArchive.class, "test.ear")
-                .setApplicationXML("org/jboss/seam/compat/cdi/packaging/ear/application.xml").addAsModule(createWar());
+                .setApplicationXML("org/jboss/seam/compat/cdi/packaging/ear/single-application.xml")
+                .addAsModule(createWar("test.war", createJar("test.jar", FooExtension.class, FooBean.class)));
     }
 
-    public static WebArchive createWar() {
+    public static WebArchive createWar(String name, JavaArchive... libraries) {
         StringAsset webXml = new StringAsset(Descriptors.create(WebAppDescriptor.class).exportAsString());
-        return ShrinkWrap.create(WebArchive.class, "test.war").setWebXML(webXml)
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").addAsLibrary(createJar());
+        return ShrinkWrap.create(WebArchive.class, name).setWebXML(webXml)
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").addAsLibraries(libraries);
     }
 
-    public static JavaArchive createJar() {
-        return ShrinkWrap.create(JavaArchive.class, "test.jar").addClasses(SimpleExtension.class, SimpleInjectionPoint.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsServiceProvider(Extension.class, SimpleExtension.class);
+    public static JavaArchive createJar(String name, Class<? extends Extension> extension, Class<?>... classes) {
+        return ShrinkWrap.create(JavaArchive.class, name).addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addClasses(classes).addClass(extension).addAsServiceProvider(Extension.class, extension);
     }
 
     @Test

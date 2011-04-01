@@ -2,12 +2,12 @@ package org.jboss.seam.compat.cdi.packaging.ear;
 
 import javax.inject.Inject;
 
-public class SimpleInjectionPoint {
+public class BarBean {
 
     @Inject
-    private SimpleExtension extension;
+    private BarExtension extension;
 
-    public SimpleExtension getExtension() {
+    public BarExtension getExtension() {
         return extension;
     }
 }
