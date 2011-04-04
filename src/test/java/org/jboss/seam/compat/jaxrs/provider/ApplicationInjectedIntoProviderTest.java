@@ -9,25 +9,31 @@ import org.jboss.seam.compat.jaxrs.AbstractRestClientTest;
 import org.jboss.seam.compat.jaxrs.MyApplication;
 import org.jboss.seam.compat.jaxrs.Resource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.descriptor.api.Descriptors;
+import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
  * Verifies that an Application subclass can be injected into a JAX-RS provider.
  * 
- * https://issues.jboss.org/browse/RESTEASY-506
+ * @see https://issues.jboss.org/browse/RESTEASY-506
  * 
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  */
 @RunWith(Arquillian.class)
 public class ApplicationInjectedIntoProviderTest extends AbstractRestClientTest {
-    @ArquillianResource URL deploymentUrl;
-    
+    @ArquillianResource
+    URL deploymentUrl;
+
     @Deployment(testable = false)
     public static WebArchive getDeployment() {
+        WebAppDescriptor webXml = Descriptors.create(WebAppDescriptor.class);
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(MyApplication.class, Resource.class, ExceptionMapperWithApplicationInjection.class).setWebXML("WEB-INF/web.xml");
+                .addClasses(MyApplication.class, Resource.class, ExceptionMapperWithApplicationInjection.class)
+                .setWebXML(new StringAsset(webXml.exportAsString()));
     }
 
     @Test

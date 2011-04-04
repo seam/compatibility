@@ -16,6 +16,6 @@ public class ExceptionMapperWithApplicationInjection implements ExceptionMapper<
     public Response toResponse(NullPointerException exception) {
         StringBuilder builder = new StringBuilder();
         builder.append("Application:" + (application != null));
-        return Response.status(200).entity(builder.toString()).type(MediaType.TEXT_HTML).build();
+        return Response.status(200).entity(builder.toString()).type(MediaType.TEXT_PLAIN).build();
     }
 }

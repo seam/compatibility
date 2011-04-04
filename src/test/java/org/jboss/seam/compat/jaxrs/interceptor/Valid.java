@@ -1,4 +1,4 @@
-package org.jboss.seam.compat.jaxrs.validation;
+package org.jboss.seam.compat.jaxrs.interceptor;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Inherited;

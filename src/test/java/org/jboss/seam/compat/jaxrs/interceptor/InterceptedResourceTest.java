@@ -1,4 +1,4 @@
-package org.jboss.seam.compat.jaxrs.validation;
+package org.jboss.seam.compat.jaxrs.interceptor;
 
 import java.net.URL;
 
@@ -21,13 +21,15 @@ import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 public class InterceptedResourceTest extends AbstractRestClientTest {
-    @ArquillianResource URL deploymentUrl;
-    
+    @ArquillianResource
+    URL deploymentUrl;
+
     @Deployment(testable = false)
     public static WebArchive getDeployment() {
         BeansDescriptor beansXml = Descriptors.create(BeansDescriptor.class).interceptor(ValidationInterceptor.class);
         WebAppDescriptor webXml = Descriptors.create(WebAppDescriptor.class);
-        return ShrinkWrap.create(WebArchive.class, "test.war").addClasses(MyApplication.class, Resource.class)
+        return ShrinkWrap.create(WebArchive.class, "test.war")
+                .addClasses(MyApplication.class, Resource.class)
                 .addAsWebInfResource(new StringAsset(beansXml.exportAsString()), beansXml.getDescriptorName())
                 .setWebXML(new StringAsset(webXml.exportAsString())).addAsLibrary(getJar());
     }

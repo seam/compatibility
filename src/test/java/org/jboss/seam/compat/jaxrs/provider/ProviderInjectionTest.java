@@ -21,19 +21,22 @@ import org.junit.runner.RunWith;
 /**
  * Verifies that a JAX-RS provider gets JAX-RS injections when bundled inside a .jar placed in WEB-INF/lib.
  * 
- * http://java.net/jira/browse/GLASSFISH-15794 https://issues.jboss.org/browse/RESTEASY-506
+ * @see http://java.net/jira/browse/GLASSFISH-15794
+ * @see https://issues.jboss.org/browse/RESTEASY-506
  * 
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  */
 @RunWith(Arquillian.class)
 public class ProviderInjectionTest extends AbstractRestClientTest {
-    @ArquillianResource URL deploymentUrl;
-    
+    @ArquillianResource
+    URL deploymentUrl;
+
     @Deployment(testable = false)
     public static WebArchive getDeployment() {
         WebAppDescriptor webXml = Descriptors.create(WebAppDescriptor.class);
         return ShrinkWrap.create(WebArchive.class, "test.war").addClasses(MyApplication.class, Resource.class)
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").setWebXML(new StringAsset(webXml.exportAsString())).addAsLibrary(getJar());
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").setWebXML(new StringAsset(webXml.exportAsString()))
+                .addAsLibrary(getJar());
     }
 
     public static JavaArchive getJar() {

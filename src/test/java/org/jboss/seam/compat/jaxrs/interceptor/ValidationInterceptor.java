@@ -1,4 +1,4 @@
-package org.jboss.seam.compat.jaxrs.validation;
+package org.jboss.seam.compat.jaxrs.interceptor;
 
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
