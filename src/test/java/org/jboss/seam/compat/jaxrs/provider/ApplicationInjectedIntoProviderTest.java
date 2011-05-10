@@ -18,10 +18,9 @@ import org.junit.runner.RunWith;
 
 /**
  * Verifies that an Application subclass can be injected into a JAX-RS provider.
- * 
- * @see https://issues.jboss.org/browse/RESTEASY-506
- * 
+ *
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
+ * @see https://issues.jboss.org/browse/RESTEASY-506
  */
 @RunWith(Arquillian.class)
 public class ApplicationInjectedIntoProviderTest extends AbstractRestClientTest {

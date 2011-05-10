@@ -16,10 +16,6 @@
  */
 package org.jboss.seam.compat.cdi.visibility;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -30,13 +26,16 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Validates that a bean in the WEB-INF/classes directory is visible to the BeanManager injected into a bean contained within a
  * bean library in the same bean (web) archive.
- * 
- * @see <a href="http://java.net/jira/browse/GLASSFISH-15721">GLASSFISH-15721</a> (unresolved)
- * 
+ *
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
+ * @see <a href="http://java.net/jira/browse/GLASSFISH-15721">GLASSFISH-15721</a> (unresolved)
  */
 @RunWith(Arquillian.class)
 public class VisibilityOfBeanInWebModuleFromBeanManagerInBeanLibraryTest {

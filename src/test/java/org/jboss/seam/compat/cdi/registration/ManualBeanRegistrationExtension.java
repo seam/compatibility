@@ -23,7 +23,7 @@ import javax.enterprise.inject.spi.Extension;
 
 /**
  * An extension which registers a bean programmatically.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/LightGuard">Jason Porter</a>
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */

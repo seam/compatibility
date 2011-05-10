@@ -17,10 +17,9 @@ import org.junit.runner.RunWith;
 
 /**
  * This test verifies that a CDI extension can be used with a web application bundled inside of an enterprise archive (.ear)
- * 
- * @see https://issues.jboss.org/browse/JBAS-8683
+ *
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
- * 
+ * @see https://issues.jboss.org/browse/JBAS-8683
  */
 @RunWith(Arquillian.class)
 public class SingleWebAppTest {

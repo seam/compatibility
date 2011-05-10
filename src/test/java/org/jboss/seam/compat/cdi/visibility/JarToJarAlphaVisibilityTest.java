@@ -16,8 +16,6 @@
  */
 package org.jboss.seam.compat.cdi.visibility;
 
-import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
-
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -27,9 +25,11 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
+
 /**
  * Verifies that a bean from a BDA is injectable into another BDA.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  */
 @RunWith(Arquillian.class)

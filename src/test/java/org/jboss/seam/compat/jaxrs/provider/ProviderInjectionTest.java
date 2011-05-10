@@ -20,11 +20,10 @@ import org.junit.runner.RunWith;
 
 /**
  * Verifies that a JAX-RS provider gets JAX-RS injections when bundled inside a .jar placed in WEB-INF/lib.
- * 
+ *
+ * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  * @see http://java.net/jira/browse/GLASSFISH-15794
  * @see https://issues.jboss.org/browse/RESTEASY-506
- * 
- * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  */
 @RunWith(Arquillian.class)
 public class ProviderInjectionTest extends AbstractRestClientTest {

@@ -28,21 +28,22 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Validates that a class in one non-bean archive can be registered as a bean by an extension in another non-bean archive and
  * that the bean is visible to the web (bean) archive.
- * 
+ * <p/>
  * <p>
  * This test fails on the reference implementation (GlassFish). It will pass if you add META-INF/beans.xml to a.jar and remove
  * the ManualBeanRegistrationExtension service provider from b.jar
  * </p>
- * 
- * @see <a href="http://java.net/jira/browse/GLASSFISH-15721">GLASSFISH-15721</a> (unresolved)
- * 
+ *
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
+ * @see <a href="http://java.net/jira/browse/GLASSFISH-15721">GLASSFISH-15721</a> (unresolved)
  */
 @RunWith(Arquillian.class)
 public class VisibilityOfBeanRegisteredByExtensionFromNonBeanLibraryTest {

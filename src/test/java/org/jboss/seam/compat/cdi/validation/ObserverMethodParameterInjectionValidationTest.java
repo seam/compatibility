@@ -30,7 +30,7 @@ import org.junit.runner.RunWith;
 
 /**
  * Validates that injection points on observer methods are validated.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */
 @RunWith(Arquillian.class)
@@ -39,8 +39,8 @@ public class ObserverMethodParameterInjectionValidationTest {
     @Deployment
     public static JavaArchive getDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
-            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-            .addClass(Observer.class);
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addClass(Observer.class);
         return jar;
     }
 
@@ -48,7 +48,7 @@ public class ObserverMethodParameterInjectionValidationTest {
     public void testDeployment() {
         Assert.fail("Deployment should have failed with 'Unsatisfied dependencies for type [File] with qualifiers [@Default] on observer method injection point'");
     }
-    
+
     /**
      * This test should not run, but if it does, it shows Weld reporting this error:
      * WELD-001324 Argument bean must not be null

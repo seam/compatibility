@@ -32,10 +32,9 @@ import org.junit.runner.RunWith;
 /**
  * Tests whether an extension that observes annotated types, when put in a library with a higher order name (alpha.jar), is
  * notified of annotated types in a library with a lower order name (bravo.jar).
- * 
- * @see <a href="http://java.net/jira/browse/GLASSFISH-15735">GLASSFISH-15735</a> (unresolved)
- * 
+ *
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
+ * @see <a href="http://java.net/jira/browse/GLASSFISH-15735">GLASSFISH-15735</a> (unresolved)
  */
 @RunWith(Arquillian.class)
 public class VisibilityOfAnnotatedTypesFromExtensionInAlphaBeanArchiveTest {
@@ -52,7 +51,7 @@ public class VisibilityOfAnnotatedTypesFromExtensionInAlphaBeanArchiveTest {
         return ShrinkWrap.create(WebArchive.class, "test.war").addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsLibraries(alpha, bravo);
     }
-    
+
     @Test
     public void shouldObserveExpectedAnnotatedTypes(AnnotatedTypeObserverExtension observer) {
         Assert.assertTrue(observer.observed(Beer.class));

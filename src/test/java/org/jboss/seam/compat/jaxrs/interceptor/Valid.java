@@ -12,7 +12,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @InterceptorBinding
 @Inherited
-@Target({ TYPE })
+@Target({TYPE})
 @Retention(RUNTIME)
 @Documented
 public @interface Valid {

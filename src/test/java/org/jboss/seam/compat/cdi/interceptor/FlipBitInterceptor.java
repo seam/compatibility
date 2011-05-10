@@ -10,10 +10,9 @@ import javax.interceptor.InvocationContext;
 public class FlipBitInterceptor {
     @Inject
     private Bit bit;
-    
+
     @AroundInvoke
-    public Object intercept(final InvocationContext ctx) throws Exception
-    {
+    public Object intercept(final InvocationContext ctx) throws Exception {
         bit.flip();
         return ctx.proceed();
     }

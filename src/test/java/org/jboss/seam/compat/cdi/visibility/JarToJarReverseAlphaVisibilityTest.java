@@ -16,8 +16,6 @@
  */
 package org.jboss.seam.compat.cdi.visibility;
 
-import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
-
 import org.jboss.arquillian.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -27,12 +25,13 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
+
 /**
  * Same as {@link JarToJarAlphaVisibilityTest} but the content of alpha and bravo jars is swapped to detect ordering issues.
- * 
- * @see <a href="http://java.net/jira/browse/GLASSFISH-15735">GLASSFISH-15735</a> (unresolved)
- * 
+ *
  * @author <a href="mailto:jharting@redhat.com">Jozef Hartinger</a>
+ * @see <a href="http://java.net/jira/browse/GLASSFISH-15735">GLASSFISH-15735</a> (unresolved)
  */
 @RunWith(Arquillian.class)
 public class JarToJarReverseAlphaVisibilityTest {

@@ -9,12 +9,11 @@ import org.junit.runner.RunWith;
 /**
  * This test verifies that multiple CDI-enabled web applications can be bundled inside of an enterprise archive (.ear)
  *
- * @see http://java.net/jira/browse/GLASSFISH-16303
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
- * 
+ * @see http://java.net/jira/browse/GLASSFISH-16303
  */
 @RunWith(Arquillian.class)
-public class MultiWebAppTest  extends SingleWebAppTest{
+public class MultiWebAppTest extends SingleWebAppTest {
 
     @Deployment(testable = false)
     public static EnterpriseArchive createEar() {

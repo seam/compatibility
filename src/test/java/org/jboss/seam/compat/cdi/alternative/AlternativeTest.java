@@ -16,9 +16,6 @@
  */
 package org.jboss.seam.compat.cdi.alternative;
 
-import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
-import static org.junit.Assert.assertEquals;
-
 import javax.enterprise.inject.spi.Extension;
 import javax.inject.Inject;
 
@@ -33,12 +30,14 @@ import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.jboss.shrinkwrap.api.ShrinkWrap.create;
+import static org.junit.Assert.assertEquals;
+
 /**
  * This test verifies that alternatives work correctly in BDAs that contain at least one extension.
- * 
- * @see <a href="http://java.net/jira/browse/GLASSFISH-15791">GLASSFISH-15791</a> (resolved)
- * 
+ *
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
+ * @see <a href="http://java.net/jira/browse/GLASSFISH-15791">GLASSFISH-15791</a> (resolved)
  */
 @RunWith(Arquillian.class)
 public class AlternativeTest {

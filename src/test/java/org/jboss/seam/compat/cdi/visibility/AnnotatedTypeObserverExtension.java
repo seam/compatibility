@@ -34,7 +34,7 @@ public class AnnotatedTypeObserverExtension implements Extension {
     public <X> void processAnnotatedType(@Observes ProcessAnnotatedType<X> event) {
         observed.add(event.getAnnotatedType().getJavaClass());
     }
-    
+
     public boolean observed(Class<?> c) {
         return observed.contains(c);
     }

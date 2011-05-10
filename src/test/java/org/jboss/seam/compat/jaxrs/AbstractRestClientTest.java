@@ -1,11 +1,11 @@
 package org.jboss.seam.compat.jaxrs;
 
-import static org.junit.Assert.assertEquals;
-
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
 public abstract class AbstractRestClientTest {
