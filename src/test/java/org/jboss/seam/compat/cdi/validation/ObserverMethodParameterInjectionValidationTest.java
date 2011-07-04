@@ -18,7 +18,7 @@ package org.jboss.seam.compat.cdi.validation;
 
 import javax.enterprise.inject.spi.BeanManager;
 
-import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
