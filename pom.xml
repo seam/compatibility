@@ -233,9 +233,6 @@
                     <value>jbossas-remote-7</value>
                 </property>
             </activation>
-            <properties>
-                <arquillian.launch>jbossas7</arquillian.launch>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.as</groupId>
@@ -252,9 +249,6 @@
                     <value>jbossas-managed-7</value>
                 </property>
             </activation>
-            <properties>
-                <arquillian.launch>jbossas7</arquillian.launch>
-            </properties>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.as</groupId>
