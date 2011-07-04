@@ -1,6 +1,6 @@
 package org.jboss.seam.compat.cdi.interceptor;
 
-import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -36,6 +36,7 @@ public class EnableInterceptorTest {
 
     @Test
     public void shouldInterceptBeanMethod(Bean bean, Bit bit) {
+        bit.reset();
         bean.operation();
         Assert.assertTrue("Method was not intercepted", bit.isFlipped());
     }

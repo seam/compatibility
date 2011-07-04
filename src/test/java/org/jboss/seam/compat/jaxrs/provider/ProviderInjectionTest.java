@@ -1,9 +1,6 @@
 package org.jboss.seam.compat.jaxrs.provider;
 
-import java.net.URL;
-
-import org.jboss.arquillian.api.ArquillianResource;
-import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.compat.jaxrs.AbstractRestClientTest;
 import org.jboss.seam.compat.jaxrs.MyApplication;
@@ -20,15 +17,18 @@ import org.junit.runner.RunWith;
 
 /**
  * Verifies that a JAX-RS provider gets JAX-RS injections when bundled inside a .jar placed in WEB-INF/lib.
- *
+ * 
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  * @see http://java.net/jira/browse/GLASSFISH-15794
  * @see https://issues.jboss.org/browse/RESTEASY-506
  */
 @RunWith(Arquillian.class)
 public class ProviderInjectionTest extends AbstractRestClientTest {
-    @ArquillianResource
-    URL deploymentUrl;
+//    ARQ-504
+//    @ArquillianResource
+//    URL deploymentUrl;
+
+    private String deploymentUrl = "http://localhost:8080/test/";
 
     @Deployment(testable = false)
     public static WebArchive getDeployment() {
