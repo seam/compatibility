@@ -16,15 +16,12 @@
  */
 package org.jboss.seam.compat.cdi.validation;
 
-import javax.enterprise.inject.spi.BeanManager;
-
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.ShouldThrowException;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -34,27 +31,19 @@ import org.junit.runner.RunWith;
  * @author <a href="http://community.jboss.org/people/dan.j.allen">Dan Allen</a>
  */
 @RunWith(Arquillian.class)
-@Ignore
 public class ObserverMethodParameterInjectionValidationTest {
     @Deployment
+    @ShouldThrowException(Exception.class)
     public static JavaArchive getDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addClass(Observer.class);
         return jar;
     }
-
+    
     @Test
-    public void testDeployment() {
-        Assert.fail("Deployment should have failed with 'Unsatisfied dependencies for type [File] with qualifiers [@Default] on observer method injection point'");
-    }
-
-    /**
-     * This test should not run, but if it does, it shows Weld reporting this error:
-     * WELD-001324 Argument bean must not be null
-     */
-    @Test
-    public void testNullInjectionOnObserverMethod(BeanManager beanManager) {
-        beanManager.fireEvent("Message");
+    public void test()
+    {
+        // noop, deployment exception expected
     }
 }
