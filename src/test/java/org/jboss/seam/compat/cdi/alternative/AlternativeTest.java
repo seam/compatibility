@@ -26,7 +26,7 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -50,7 +50,7 @@ public class AlternativeTest {
     }
 
     public static JavaArchive getJar() {
-        BeansDescriptor beansXml = Descriptors.create(BeansDescriptor.class).alternativeClass(BarAlternative.class);
+        BeansDescriptor beansXml = Descriptors.create(BeansDescriptor.class).createAlternatives().clazz(BarAlternative.class.getName()).up();
         return create(JavaArchive.class, "test.jar")
                 .addClasses(Foo.class, Bar.class, BarAlternative.class, NoopExtension.class)
                 .addAsManifestResource(new StringAsset(beansXml.exportAsString()), beansXml.getDescriptorName())

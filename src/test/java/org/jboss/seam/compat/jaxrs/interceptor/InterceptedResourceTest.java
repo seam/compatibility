@@ -11,8 +11,8 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
-import org.jboss.shrinkwrap.descriptor.api.spec.servlet.web.WebAppDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -26,7 +26,7 @@ public class InterceptedResourceTest extends AbstractRestClientTest {
 
     @Deployment(testable = false)
     public static WebArchive getDeployment() {
-        BeansDescriptor beansXml = Descriptors.create(BeansDescriptor.class).interceptor(ValidationInterceptor.class);
+        BeansDescriptor beansXml = Descriptors.create(BeansDescriptor.class).createInterceptors().clazz(ValidationInterceptor.class.getName()).up();
         WebAppDescriptor webXml = Descriptors.create(WebAppDescriptor.class);
         return ShrinkWrap.create(WebArchive.class, "test.war").addClasses(MyApplication.class, Resource.class)
                 .addAsWebInfResource(new StringAsset(beansXml.exportAsString()), beansXml.getDescriptorName())

@@ -8,7 +8,7 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
-import org.jboss.shrinkwrap.descriptor.api.spec.cdi.beans.BeansDescriptor;
+import org.jboss.shrinkwrap.descriptor.api.beans10.BeansDescriptor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +27,7 @@ public class EnableInterceptorTest {
                 .addClasses(Bit.class, FlipBit.class, FlipBitInterceptor.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 
-        BeansDescriptor beansXml = Descriptors.create(BeansDescriptor.class).interceptor(FlipBitInterceptor.class);
+        BeansDescriptor beansXml = Descriptors.create(BeansDescriptor.class).createInterceptors().clazz(FlipBitInterceptor.class.getName()).up();
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addClasses(Bean.class)
                 .addAsLibrary(jar)
